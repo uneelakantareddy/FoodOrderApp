@@ -1,0 +1,36 @@
+.dataWraper {
+  & {
+    display: grid;
+    margin: 1rem;
+    border: 0.1rem solid black;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-radius: 7px;
+    grid-column-gap: 0.7rem;
+  }
+}
+.food {
+  &__div {
+    margin: 1.5rem;
+    border: 1px solid rgb(201, 99, 36);
+    border-radius: 10px;
+  }
+  &__img {
+    // align-items: center;
+    padding-left: 2.5rem;
+  }
+  &__name {
+    padding-left: 0.4rem;
+  }
+  &__description {
+    overflow: wrap;
+    padding-left: 0.5rem;
+    text-overflow: ellipsis;
+    line-height: 0.2in;
+  }
+  &__price {
+    margin-top: 2rem;
+    margin-left: 0.5rem;
+    color: rgb(201, 99, 36);
+  }
+}
