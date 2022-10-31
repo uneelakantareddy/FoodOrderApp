@@ -13,7 +13,7 @@ const HeaderCartButton = () => {
     setShownCart(true);
   };
 
-  console.log("first", shownCart);
+  // console.log("first", shownCart);
 
   return (
     <React.Fragment>

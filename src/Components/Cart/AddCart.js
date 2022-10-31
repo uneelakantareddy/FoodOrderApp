@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useState, createContext } from "react";
 import Modal from "../UI/Modal";
 import "./AddCart.scss";
 import { connect } from "react-redux";
 import { AddCartAction, SubCartAction } from "../../redux/actions";
-import { createContext } from "react";
 import Cart from "./Cart";
+import { UserContext } from "../Layout/HeaderCartButton";
 
 export const gotoCartContext = createContext();
 const AddCart = (props) => {
-  const [showAddCart, foodItemData, setShowAddCart] = props.value;
-
+  const { showAddCart, showAddCartData, setShowAddCart } = props.value;
+  const [shownCart, setShownCart] = useState(false);
+  // console.log(showAddCartData);
   var quantity = props.local_variable;
-  var fName = foodItemData[0];
-  var fPrice = foodItemData[1];
-
-  console.log("CART DATA VALUES ", quantity, fName, fPrice);
+  var fName = showAddCartData[0] ?? 0;
+  var fPrice = showAddCartData[1] ?? 0;
+  // const { addCartData } = props.showAddCartData;
+  // console.log(addCartData);
+  // console.log("CART DATA VALUES ", quantity, fName, fPrice);
 
   return (
     <div>
@@ -41,17 +43,24 @@ const AddCart = (props) => {
             </button>
             <button className="actions__gotoCartBtn">Go To Cart</button>
           </div>
-          <gotoCartContext.Provider value={[quantity, fName, fPrice]}>
-            <Cart />
+          <gotoCartContext.Provider
+            value={{ quantity: quantity, fName: fName, fPrice: fPrice }}
+          >
+            <UserContext.Provider value={[shownCart, setShownCart]}>
+              <Cart />
+            </UserContext.Provider>
           </gotoCartContext.Provider>
         </Modal>
       )}
     </div>
   );
 };
-const mapStateToProps = (state) => ({
-  local_variable: state,
-});
+
+const mapStateToProps = (state) => {
+  return {
+    local_variable: state,
+  };
+};
 
 export default connect(mapStateToProps, { AddCartAction, SubCartAction })(
   AddCart

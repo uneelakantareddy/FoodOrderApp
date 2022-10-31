@@ -2,18 +2,13 @@ import React, { useContext } from "react";
 import Modal from "../UI/Modal";
 import "./Cart.scss";
 import { UserContext } from "../Layout/HeaderCartButton";
-import { gotoCartContext } from "./AddCart";
-const Cart = (props) => {
-  // const [quantity, name, price] = props.cartData;
-  // console.log(props.cartData);
-  const data = useContext(gotoCartContext);
-  // console.log("CartData", data);
+
+const Cart = () => {
   const [shownCart, setShownCart] = useContext(UserContext);
-  console.log("cartshownData", shownCart);
 
   const cartItems = (
     <ul className="cart-items">
-      {[{ id: "c1", name: "sushi", amount: 2, price: 36.5 }].map((item) => (
+      {[{ id: "c1", name: "sushi", amount: 2 }].map((item) => (
         <li key={item.id}>{item.name}</li>
       ))}
     </ul>

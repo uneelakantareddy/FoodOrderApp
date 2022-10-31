@@ -1,4 +1,4 @@
-var count = 3;
+var count = 1;
 const reducer = (state = count, action) => {
   const { type } = action;
   switch (type) {
@@ -6,7 +6,10 @@ const reducer = (state = count, action) => {
       return state + 1;
     }
     case "SUB": {
-      return state - 1;
+      if (state > 1) {
+        return state - 1;
+      }
+      break;
     }
     default:
       return state;
